@@ -42,12 +42,36 @@
   margin-bottom: 20px;
 }
 
+/* Category heading centering */
+.plant_heading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.plantname_heading {
+  text-align: center;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
 /* Plants Container */
 .plants-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+}
+
+/* Product list shows cards side-by-side and wraps to next line */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* center cards within the category */
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
 }
 
 /* Product Card */
@@ -68,14 +92,14 @@
 .product-card:hover {
   transform: scale(1.05);
 }
-/* Product image — more specific and constrained to prevent overrides */
+/* Product image — smaller consistent sizes */
 .product-card .product-img {
-  width: 64px; /* حجم أصغر افتراضي */
-  height: 64px;
-  max-width: 64px;
-  max-height: 64px;
+  width: 96px; /* desktop */
+  height: 96px;
+  max-width: 96px;
+  max-height: 96px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 8px;
   margin: 12px auto 8px;
   display: block;
   align-self: center;
@@ -84,20 +108,31 @@
 
 /* Fallback stronger rule if another stylesheet overrides it */
 .product-card .product-img.force-small {
-  width: 64px !important;
-  height: 64px !important;
-  max-width: 64px !important;
-  max-height: 64px !important;
+  width: 96px !important;
+  height: 96px !important;
+  max-width: 96px !important;
+  max-height: 96px !important;
+}
+
+@media (max-width: 768px) {
+  .product-card .product-img {
+    width: 80px; /* tablet */
+    height: 80px;
+    max-width: 80px;
+    max-height: 80px;
+  }
 }
 
 @media (max-width: 480px) {
   .product-card .product-img {
-    width: 40px; /* أصغر على الأجهزة الصغيرة */
-    height: 40px;
-    max-width: 40px;
-    max-height: 40px;
+    width: 64px; /* mobile */
+    height: 64px;
+    max-width: 64px;
+    max-height: 64px;
   }
 }
+
+
 
 .product-name {
   font-weight: bold;
@@ -109,7 +144,7 @@
   margin: 0 0 5px 0;
 }
 
-.product-cost {
+.product-cost, .product-price {
   color: #e74c3c;
   font-weight: bold;
   margin: 0 0 10px 0;
@@ -142,4 +177,51 @@
     flex: 1 1 90%;
     max-width: 90%;
   }
+}
+
+/* Cart icon and count spacing */
+.cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* short spacing between count and icon */
+}
+
+.cart_quantity_count {
+  margin: 0;
+  font-weight: bold;
+  color: white;
+  background: #4caf50;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+/* Center the Home link in the navbar */
+.navbar { position: relative; align-items: center; }
+.nav-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pin cart to the right edge */
+.cart-wrapper {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Make cart SVG icon smaller and centered */
+.cart svg {
+  width: 36px;
+  height: 36px;
+  display: block;
 }

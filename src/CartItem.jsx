@@ -7,12 +7,10 @@ const CartItem = ({ onContinueShopping }) => {
   const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  // زيادة الكمية
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
-  // نقصان الكمية
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
@@ -21,31 +19,26 @@ const CartItem = ({ onContinueShopping }) => {
     }
   };
 
-  // إزالة العنصر بالكامل
   const handleRemove = (item) => {
     dispatch(removeItem(item.name));
   };
 
-  // حساب المجموع الفرعي للعنصر
   const calculateTotalCost = (item) => {
     const price = parseFloat(item.cost.replace('$', ''));
     return (price * item.quantity).toFixed(2);
   };
 
-  // حساب المجموع الإجمالي لكل العناصر في السلة
   const calculateTotalAmount = () => {
     return cartItems.reduce((total, item) => total + parseFloat(calculateTotalCost(item)), 0).toFixed(2);
   };
 
-  // استمرار التسوق
   const handleContinueShoppingClick = (e) => {
     e.preventDefault();
     onContinueShopping();
   };
 
-  // الدفع (مستقبلي)
   const handleCheckoutShopping = () => {
-    alert('Checkout functionality to be added for future reference');
+    alert('Checkout functionality to be added.');
   };
 
   return (
@@ -69,19 +62,19 @@ const CartItem = ({ onContinueShopping }) => {
             <tbody>
               {cartItems.map((item, index) => (
                 <tr key={index}>
-                  <td>
-                    <img src={item.image} alt={item.name} className="cart-img" />
-                    {item.name}
+                  <td className="cart-item">
+                    <img src={item.image} alt={item.name} className="cart-img" width={40} height={40} loading="lazy" />
+                    <span className="cart-item-name">{item.name}</span>
                   </td>
                   <td>{item.cost}</td>
-                  <td>
-                    <button onClick={() => handleDecrement(item)}>-</button>
+                  <td className="cart-item-quantity">
+                    <button className="quantity-btn" onClick={() => handleDecrement(item)}>-</button>
                     <span className="quantity">{item.quantity}</span>
-                    <button onClick={() => handleIncrement(item)}>+</button>
+                    <button className="quantity-btn" onClick={() => handleIncrement(item)}>+</button>
                   </td>
                   <td>${calculateTotalCost(item)}</td>
                   <td>
-                    <button onClick={() => handleRemove(item)}>Remove</button>
+                    <button className="cart-item-delete" onClick={() => handleRemove(item)}>Remove</button>
                   </td>
                 </tr>
               ))}
@@ -90,8 +83,10 @@ const CartItem = ({ onContinueShopping }) => {
 
           <div className="cart-summary">
             <h2>Total: ${calculateTotalAmount()}</h2>
-            <button onClick={handleContinueShoppingClick}>Continue Shopping</button>
-            <button onClick={handleCheckoutShopping}>Checkout</button>
+            <div className="cart-actions">
+              <button className="continue-btn" onClick={handleContinueShoppingClick}>Continue Shopping</button>
+              <button className="checkout-btn" onClick={handleCheckoutShopping}>Checkout</button>
+            </div>
           </div>
         </>
       )}

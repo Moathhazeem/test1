@@ -7,7 +7,6 @@ import { addItem } from './CartSlice';
 function ProductList({ onHomeClick }) {
   const dispatch = useDispatch();
   const [showCart, setShowCart] = useState(false);
-  const [showPlants, setShowPlants] = useState(false);
 
   // بيانات النباتات
   const plantsArray = [
@@ -32,7 +31,6 @@ function ProductList({ onHomeClick }) {
           description: "Removes mold spores and purifies the air.",
           cost: "$18"
         }
-        // أضف بقية النباتات حسب الحاجة
       ]
     },
     {
@@ -40,22 +38,20 @@ function ProductList({ onHomeClick }) {
       plants: [
         {
           name: "Lavender",
-          image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop",
           description: "Calming scent, used in aromatherapy.",
           cost: "$20"
         },
         {
           name: "Jasmine",
-          image: "https://images.unsplash.com/photo-1592729645009-b96d1e63d14b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          image: "https://images.unsplash.com/photo-1592729645009-b96d1e63d14b?q=80&w=1170&auto=format&fit=crop",
           description: "Sweet fragrance, promotes relaxation.",
           cost: "$18"
         }
       ]
     }
-    // أضف باقي الفئات بنفس الطريقة
   ];
 
-  // أزرار الـ Navbar
   const handleHomeClick = (e) => {
     e.preventDefault();
     onHomeClick();
@@ -66,42 +62,39 @@ function ProductList({ onHomeClick }) {
     setShowCart(true);
   };
 
-  const handlePlantsClick = (e) => {
-    e.preventDefault();
-    setShowPlants(true);
-    setShowCart(false);
-  };
-
   const handleContinueShopping = () => {
     setShowCart(false);
   };
 
-  // إضافة منتج للسلة
   const handleAddToCart = (plant) => {
     dispatch(addItem(plant));
   };
 
   return (
     <div>
+      {/* Navbar */}
       <div className="navbar">
         <button onClick={handleHomeClick}>Home</button>
-        <button onClick={handlePlantsClick}>Plants</button>
+        <button onClick={() => setShowCart(false)}>Plants</button>
         <button onClick={handleCartClick}>Cart</button>
       </div>
 
+      {/* المحتوى */}
       {!showCart ? (
         <div className="product-grid">
           {plantsArray.map((category, index) => (
-            <div key={index}>
-              <h2>{category.category}</h2>
+            <div key={index} className="category-section">
+              <h2 className="category-title">{category.category}</h2>
               <div className="plants-container">
                 {category.plants.map((plant, i) => (
-                  <div className="plant-card" key={i}>
-                    <img src={plant.image} alt={plant.name} />
-                    <h3>{plant.name}</h3>
-                    <p>{plant.description}</p>
-                    <p>{plant.cost}</p>
-                    <button onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                  <div className="product-card" key={i}>
+                    <img src={plant.image} alt={plant.name} className="product-img force-small" width={64} height={64} loading="lazy" />
+                    <h3 className="product-name">{plant.name}</h3>
+                    <p className="product-desc">{plant.description}</p>
+                    <p className="product-cost">{plant.cost}</p>
+                    <button className="product-button" onClick={() => handleAddToCart(plant)}>
+                      Add to Cart
+                    </button>
                   </div>
                 ))}
               </div>

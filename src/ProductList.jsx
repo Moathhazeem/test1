@@ -88,7 +88,7 @@ function ProductList({ onHomeClick }) {
               <div className="plants-container">
                 {category.plants.map((plant, i) => (
                   <div className="product-card" key={i}>
-                    <img src={plant.image} alt={plant.name} className="product-img force-small" width={64} height={64} loading="lazy" />
+                    <img src={plant.image} alt={plant.name} className="product-img" width={64} height={64} loading="lazy" />
                     <h3 className="product-name">{plant.name}</h3>
                     <p className="product-desc">{plant.description}</p>
                     <p className="product-cost">{plant.cost}</p>

@@ -1,27 +1,38 @@
 .about-us-container {
   width: 1000px;
-  /* margin: 0 auto; */
-  /* padding: 20px; */
-  /* background-color: red; */
-  text-align: justify;
-}
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px;
+  background: transparent;
+  color: #ffffff;
+  text-align: left;
+  border-radius: 0;
+  box-shadow: none;
+  direction: ltr; /* English layout */
+} 
+
+.about-us-heading {
+  text-align: left;
+} 
 
 .about-us-heading {
   font-size: 32px;
   font-weight: bold;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 20px;
-}
+  text-align: center;
+} 
 
 .about-us-description {
   font-size: 18px;
-  color: #666;
+  color: rgba(255,255,255,0.95);
   margin-bottom: 30px;
   text-align: center;
 }
 
 .about-us-content {
   font-size: 18px;
+  color: rgba(255,255,255,0.95);
   margin-bottom: 20px;
 }
 

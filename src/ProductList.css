@@ -53,6 +53,13 @@
   text-align: center;
   font-size: 24px;
   margin: 10px 0;
+  color: #000; /* make category titles black */
+}
+
+/* Product title (used in JSX) */
+.product-title {
+  color: #000; /* make product names black */
+  font-weight: bold;
 }
 
 /* Plants Container */
@@ -142,6 +149,7 @@
 .product-desc {
   font-size: 14px;
   margin: 0 0 5px 0;
+  color: #000; /* make product descriptions black */
 }
 
 .product-cost, .product-price {
@@ -219,9 +227,18 @@
   justify-content: center;
 }
 
-/* Make cart SVG icon smaller and centered */
+/* Make cart text smaller and centered */
+.cart_text {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: lowercase;
+  display: inline-block;
+}
+
+/* Make cart SVG icon smaller and centered (if present) */
 .cart svg {
   width: 36px;
   height: 36px;
   display: block;
-}
+} 
